@@ -1,0 +1,55 @@
+
+package app.pedidos;
+
+public class PedidoFacade {
+    private ValidacionService validacionService;
+    private CalculoService calculoService;
+    private RegistroService registroService;
+    private ComprobanteService comprobanteService;
+    private FacturaService facturaService;
+    
+    public PedidoFacade(FacturaService facturaService) {
+        this.validacionService = new ValidacionService();
+        this.calculoService = new CalculoService();
+        this.registroService = new RegistroService();
+        this.comprobanteService = new ComprobanteService();
+        this.facturaService = facturaService;
+    }
+    public String procesarPedido(String cliente, String producto, int cantidad) {
+        System.out.println("\n===== INICIANDO PROCESO DE PEDIDO =====\n");
+        
+        
+        if (!validacionService.validarCantidad(cantidad)) {
+            return "ERROR: La cantidad debe ser positiva";
+        }
+        
+        
+        if (!validacionService.validarStock(producto, cantidad)) {
+            return "ERROR: No hay suficiente stock para el producto";
+        }
+        // 2) Cálculos
+        double subtotal = calculoService.calcularSubtotal(producto, cantidad);
+        double igv = calculoService.calcularIGV(subtotal);
+        double total = calculoService.calcularTotal(subtotal, igv);
+
+        System.out.println(" Subtotal: S/. " + String.format("%.2f", subtotal));
+        System.out.println(" IGV (18%): S/. " + String.format("%.2f", igv));
+        System.out.println(" Total: S/. " + String.format("%.2f", total));
+        System.out.println();
+
+        // 3) Registro
+        registroService.registrarPedido(cliente, producto, cantidad);
+        System.out.println();
+
+        // 4) Adapter
+        facturaService.generarFactura(cliente, total);
+        System.out.println();
+
+        // 5) Comprobante
+        String comprobante = comprobanteService.generarComprobante(
+                cliente, producto, subtotal, igv, total
+        );
+
+        return comprobante;
+    }
+}
