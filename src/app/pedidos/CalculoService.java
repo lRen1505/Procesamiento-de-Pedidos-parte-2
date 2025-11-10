@@ -11,12 +11,7 @@ public double calcularSubtotal(String producto, int cantidad) {
         return subtotal;  
     }
 
-    double calcularIGV(double subtotal) {
-     return subtotal * IGV_RATE;
+public double calcularTotal(double subtotal, double impuesto) {
+        return subtotal + impuesto;
     }
-
-    double calcularTotal(double subtotal, double igv) {
-     return subtotal + igv;
-    }
-    
 }
