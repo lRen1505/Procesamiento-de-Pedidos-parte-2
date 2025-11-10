@@ -12,7 +12,7 @@ public class PedidoFacade {
     private PedidoRepository pedidoRepository;
     private ImpuestoStrategy impuestoStrategy;
     
-    public PedidoFacade(FacturaService facturaService) {
+    public PedidoFacade(FacturaService facturaService, PedidoRepository pedidoRepository) {
         this.validacionService = new ValidacionService();
         this.calculoService = new CalculoService();
         this.registroService = new RegistroService();
