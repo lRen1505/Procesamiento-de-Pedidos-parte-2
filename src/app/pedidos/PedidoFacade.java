@@ -46,19 +46,15 @@ public class PedidoFacade {
         System.out.println(" Total: S/. " + String.format("%.2f", total));
         System.out.println();
 
-        // 3) Registro
+       Pedido pedido = new Pedido(cliente, producto, cantidad, subtotal, igv, total);
+       pedidoRepository.guardar(pedido);
+        System.out.println();
         registroService.registrarPedido(cliente, producto, cantidad);
         System.out.println();
-
-        // 4) Adapter
-        facturaService.generarFactura(cliente, total);
-        System.out.println();
-
-        // 5) Comprobante
         String comprobante = comprobanteService.generarComprobante(
-                cliente, producto, subtotal, igv, total
+            cliente, producto, subtotal, igv, total
         );
+    return comprobante;
+    }    
 
-        return comprobante;
-    }
 }
