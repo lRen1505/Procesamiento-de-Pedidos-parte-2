@@ -7,6 +7,8 @@ public class PedidoFacade {
     private RegistroService registroService;
     private ComprobanteService comprobanteService;
     private FacturaService facturaService;
+    private PedidoRepository pedidoRepository;
+    private ImpuestoStrategy impuestoStrategy;
     
     public PedidoFacade(FacturaService facturaService) {
         this.validacionService = new ValidacionService();
