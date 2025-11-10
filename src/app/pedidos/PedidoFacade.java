@@ -1,6 +1,8 @@
 
 package app.pedidos;
 
+import java.util.List;
+
 public class PedidoFacade {
     private ValidacionService validacionService;
     private CalculoService calculoService;
@@ -55,6 +57,11 @@ public class PedidoFacade {
             cliente, producto, subtotal, igv, total
         );
     return comprobante;
-    }    
-
+    }  
+    public List<Pedido> listarPedidos() {
+        return pedidoRepository.obtenerTodos();
+    }
+    public List<Pedido> obtenerPedidosPorCliente(String cliente) {
+        return pedidoRepository.obtenerPorCliente(cliente);
+    }
 }
