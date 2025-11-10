@@ -16,6 +16,13 @@ public class PedidoFacade {
         this.registroService = new RegistroService();
         this.comprobanteService = new ComprobanteService();
         this.facturaService = facturaService;
+        this.pedidoRepository = pedidoRepository;
+        this.impuestoStrategy = new IGV18Strategy();
+    }
+    public void setImpuestoStrategy(ImpuestoStrategy impuestoStrategy) {
+        this.impuestoStrategy = impuestoStrategy;
+        System.out.println("[FACADE] Estrategia de impuesto cambiada a: " + 
+                         impuestoStrategy.getNombre());
     }
     public String procesarPedido(String cliente, String producto, int cantidad) {
         System.out.println("\n===== INICIANDO PROCESO DE PEDIDO =====\n");
