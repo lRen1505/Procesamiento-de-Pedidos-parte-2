@@ -4,7 +4,6 @@ package app.pedidos;
 
 public class CalculoService {
 
-private static final double IGV_RATE = 0.18;
 private static final double PRECIO_UNITARIO = 50;
 
 public double calcularSubtotal(String producto, int cantidad) {
