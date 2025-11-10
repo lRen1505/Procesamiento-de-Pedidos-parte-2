@@ -40,7 +40,7 @@ public class PedidoFacade {
         }
         // 2) Cálculos
         double subtotal = calculoService.calcularSubtotal(producto, cantidad);
-        double igv = calculoService.calcularIGV(subtotal);
+        double igv = impuestoStrategy.calcular(subtotal);
         double total = calculoService.calcularTotal(subtotal, igv);
 
         System.out.println(" Subtotal: S/. " + String.format("%.2f", subtotal));
