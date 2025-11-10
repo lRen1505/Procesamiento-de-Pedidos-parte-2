@@ -21,7 +21,7 @@ public class PedidoFacade {
     }
     public void setImpuestoStrategy(ImpuestoStrategy impuestoStrategy) {
         this.impuestoStrategy = impuestoStrategy;
-        System.out.println("[FACADE] Estrategia de impuesto cambiada a: " + 
+        System.out.println(" Estrategia de impuesto cambiada a: " + 
                          impuestoStrategy.getNombre());
     }
     public String procesarPedido(String cliente, String producto, int cantidad) {
