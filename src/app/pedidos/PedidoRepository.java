@@ -13,19 +13,19 @@ public class PedidoRepository {
     
     public PedidoRepository() {
         this.pedidos = new ArrayList<>();
-        System.out.println("[REPOSITORY] Repositorio de pedidos inicializado");
+        System.out.println("Repositorio de pedidos inicializado");
 
-}
+    }
 public void guardar(Pedido pedido) {
         pedidos.add(pedido);
-        System.out.println("[REPOSITORY] Pedido guardado: " + pedido.getId());
+        System.out.println("Pedido guardado: " + pedido.getId());
     }
 public List<Pedido> obtenerTodos() {
-        System.out.println("[REPOSITORY] Consultando todos los pedidos. Total: " + pedidos.size());
+        System.out.println("Consultando todos los pedidos. Total: " + pedidos.size());
         return new ArrayList<>(pedidos);
     }
 public Pedido obtenerPorId(String id) {
-        System.out.println("[REPOSITORY] Buscando pedido por ID: " + id);
+        System.out.println("Buscando pedido por ID: " + id);
         return pedidos.stream()
                 .filter(p -> p.getId().equals(id))
                 .findFirst()
@@ -33,7 +33,7 @@ public Pedido obtenerPorId(String id) {
     }
 
 public List<Pedido> obtenerPorCliente(String cliente) {
-        System.out.println("[REPOSITORY] Buscando pedidos del cliente: " + cliente);
+        System.out.println("Buscando pedidos del cliente: " + cliente);
         return pedidos.stream()
                 .filter(p -> p.getCliente().equalsIgnoreCase(cliente))
                 .collect(Collectors.toList());
